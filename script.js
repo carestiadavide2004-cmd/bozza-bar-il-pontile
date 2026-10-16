@@ -111,6 +111,8 @@
   /* ---------------------------------------------------------------------
      3. Menù a schede
      --------------------------------------------------------------------- */
+  const MENU_VISIBILI = 5;
+  const menuItem = (v) => `<li class="mi"><span class="mi__name">${esc(v.nome)}${v.nota ? `<span class="mi__note">${esc(v.nota)}</span>` : ""}</span><span class="mi__dots" aria-hidden="true"></span><span class="mi__price">${euro(v.prezzo, true)}</span></li>`;
   const tabsEl = $("#menu-tabs");
   const panelsEl = $("#menu-panels");
   if (tabsEl && panelsEl) {
@@ -119,9 +121,30 @@
     ).join("");
     panelsEl.innerHTML = C.menu.map((cat, i) =>
       `<div class="panel" role="tabpanel" id="panel-${cat.id}" aria-labelledby="tab-${cat.id}" tabindex="0" ${i ? "hidden" : ""}>
-        <ul>${cat.voci.map((v) => `<li class="mi"><span class="mi__name">${esc(v.nome)}${v.nota ? `<span class="mi__note">${esc(v.nota)}</span>` : ""}</span><span class="mi__dots" aria-hidden="true"></span><span class="mi__price">${euro(v.prezzo, true)}</span></li>`).join("")}</ul>
+        <ul>${cat.voci.slice(0, MENU_VISIBILI).map(menuItem).join("")}</ul>
+        ${cat.voci.length > MENU_VISIBILI ? `
+        <div class="mi-more" id="more-${cat.id}"><div><ul>${cat.voci.slice(MENU_VISIBILI).map(menuItem).join("")}</ul></div></div>
+        <button class="btn btn--outline btn--sm mi-toggle" type="button" aria-expanded="false" aria-controls="more-${cat.id}" data-more="${cat.voci.length - MENU_VISIBILI}">Vedi tutto (${cat.voci.length})</button>` : ""}
       </div>`
     ).join("");
+
+    // Sul telefono: prime 5 voci, le altre con "Vedi tutto"
+    const phone = window.matchMedia("(max-width: 759px)");
+    const syncMore = () => $$(".mi-more", panelsEl).forEach((m) => {
+      const btn = m.nextElementSibling;
+      m.inert = phone.matches && btn.getAttribute("aria-expanded") !== "true";
+    });
+    $$(".mi-toggle", panelsEl).forEach((btn) => btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      const more = $("#" + btn.getAttribute("aria-controls"));
+      btn.setAttribute("aria-expanded", open);
+      more.classList.toggle("is-open", open);
+      btn.textContent = open ? "Mostra meno" : "Vedi tutto (" + (MENU_VISIBILI + +btn.dataset.more) + ")";
+      syncMore();
+      if (!open) btn.closest(".panel").scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+    }));
+    phone.addEventListener?.("change", syncMore);
+    syncMore();
     const tabs = $$(".tab", tabsEl);
     const select = (tab, focus) => {
       tabs.forEach((t) => {
@@ -189,6 +212,35 @@
       </article>`).join("");
   }
 
+  /* Carosello orizzontale con i puntini (attivo solo sul telefono, via CSS) */
+  function carousel(track, nome) {
+    if (!track) return;
+    const cards = Array.from(track.children);
+    const dots = document.createElement("div");
+    dots.className = "dots";
+    dots.setAttribute("aria-label", nome);
+    dots.innerHTML = cards.map((c, i) => `<button type="button" class="dot" aria-label="Scheda ${i + 1} di ${cards.length}"${i ? "" : ' aria-current="true"'}></button>`).join("");
+    track.after(dots);
+    const btns = $$(".dot", dots);
+    const setActive = (i) => btns.forEach((b, k) => (k === i ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current")));
+    btns.forEach((b, i) => b.addEventListener("click", () => {
+      track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: reduceMotion ? "auto" : "smooth" });
+    }));
+    let raf = 0;
+    track.addEventListener("scroll", () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const x = track.scrollLeft + cards[0].offsetLeft;
+        let best = 0;
+        cards.forEach((c, i) => { if (Math.abs(c.offsetLeft - x) < Math.abs(cards[best].offsetLeft - x)) best = i; });
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = cards.length - 1;
+        setActive(best);
+      });
+    }, { passive: true });
+  }
+  carousel(evGrid, "Scorri i tipi di evento");
+  carousel(pkGrid, "Scorri i pacchetti");
+
   /* ---------------------------------------------------------------------
      5. Serate: mostra la prossima data per ogni appuntamento settimanale
      --------------------------------------------------------------------- */
@@ -225,6 +277,9 @@
       </li>`;
     }).join("");
   }
+
+  carousel(serateEl, "Scorri le serate");
+  carousel($("#recensioni-list"), "Scorri le recensioni");
 
   /* ---------------------------------------------------------------------
      6. Domande frequenti (fisarmonica)
