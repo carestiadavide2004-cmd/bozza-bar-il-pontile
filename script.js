@@ -453,10 +453,10 @@
   });
   window.matchMedia("(min-width: 900px)").addEventListener?.("change", (e) => { if (e.matches) setMenu(false); });
 
-  totop.addEventListener("click", () => {
+  [totop, ...$$("[data-totop]")].forEach((b) => b.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-    $(".brand").focus({ preventScroll: true });
-  });
+    $(".brand").focus({ preventScroll: true, focusVisible: false });
+  }));
 
   const navLinks = $$(".nav__list a");
   const navTargets = navLinks.map((a) => [a, $(a.getAttribute("href"))]).filter((x) => x[1]);
@@ -548,7 +548,6 @@
 
     header.classList.toggle("is-solid", y > 40);
     totop.classList.toggle("is-visible", y > vh * 0.9);
-    document.body.classList.toggle("show-totop", y > vh * 0.9);
     updateActiveLink();
 
     if (!reduceMotion) {
