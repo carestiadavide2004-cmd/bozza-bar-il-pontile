@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SALMASTRO – script del sito
+   IL PONTILE – script del sito
    I contenuti (orari, prezzi, eventi…) arrivano da config.js
    ========================================================================== */
 (function () {
@@ -481,7 +481,9 @@
   if (heroName) {
     const t = heroName.textContent;
     heroName.setAttribute("aria-label", t);
-    heroName.innerHTML = [...t].map((ch, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${esc(ch)}</span>`).join("");
+    heroName.innerHTML = [...t].map((ch, i) => ch === " "
+      ? '<span class="ch ch--sp" aria-hidden="true"> </span>'
+      : `<span class="ch" aria-hidden="true" style="--i:${i}">${esc(ch)}</span>`).join("");
   }
   // Indice per lo sfalsamento delle schede
   $$("[data-stagger]").forEach((g) => Array.from(g.children).forEach((c, i) => c.style.setProperty("--i", i % 6)));

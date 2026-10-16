@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Salmastro">
-  <defs><clipPath id="g"><path d="M17.5 13h29l-3.6 40.2a4 4 0 0 1-4 3.8H25.1a4 4 0 0 1-4-3.8z"/></clipPath></defs>
-  <g clip-path="url(#g)">
-    <path d="M10 33c5.5-5 10.5-5 16 0s10.5 5 16 0 10.5-5 16 0V62H10z" fill="#0F5560"/>
-    <path d="M10 40c5.5-4 10.5-4 16 0s10.5 4 16 0 10.5-4 16 0V62H10z" fill="#FF7A59"/>
-  </g>
-  <path d="M15 11h34l-3.9 42.4a5.5 5.5 0 0 1-5.5 5H24.4a5.5 5.5 0 0 1-5.5-5z" fill="none" stroke="#0F5560" stroke-width="3.6" stroke-linejoin="round"/>
-  <circle cx="40" cy="22" r="3.2" fill="#FF7A59"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Il Pontile">
+  <circle cx="34" cy="29" r="15" fill="#FF7A59"/>
+  <rect x="0" y="32" width="64" height="5.5" rx="1.5" fill="#0F5560"/>
+  <path d="M0 26.5h64" stroke="#0F5560" stroke-width="2.2"/>
+  <path d="M4 26.5v6M20 26.5v6M36 26.5v6M52 26.5v6" stroke="#0F5560" stroke-width="2.2"/>
+  <path d="M5 37h4.5v15H5zM21 37h4.5v15H21zM37 37h4.5v15H37zM53 37h4.5v15H53z" fill="#0F5560"/>
+  <path d="M2 50c5-4 10-4 15 0s10 4 15 0 10-4 15 0 10 4 15 0v12H2z" fill="#17707C"/>
+  <path d="M2 56.5c5-3 10-3 15 0s10 3 15 0 10-3 15 0 10 3 15 0" fill="none" stroke="#FBF8F2" stroke-width="2.4" stroke-linecap="round" opacity=".9"/>
 </svg>

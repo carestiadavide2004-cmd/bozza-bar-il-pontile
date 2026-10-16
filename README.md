@@ -1,4 +1,4 @@
-# Salmastro – Bar & Eventi (bozza)
+# Il Pontile – Bar & Eventi (bozza)
 
 Sito dimostrativo per un bar inventato sul lungomare di Pescara. Progetto portfolio di Davide Carestia.
 

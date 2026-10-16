@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SALMASTRO – CONFIGURAZIONE DEL SITO
+   IL PONTILE – CONFIGURAZIONE DEL SITO
    --------------------------------------------------------------------------
    Per adattare il sito a un cliente vero modifica SOLO questo file:
    nome, contatti, orari, prezzi, eventi, serate e link social.
@@ -15,16 +15,16 @@ window.SITE_CONFIG = {
   web3formsKey: "INSERISCI_CHIAVE_WEB3FORMS",
 
   /* 2) DATI DEL LOCALE ---------------------------------------------------- */
-  nome: "Salmastro",
+  nome: "Il Pontile",
   sottotitolo: "Bar & Eventi",
-  slogan: "Dal primo caffè all'ultimo brindisi, con il mare a dieci passi.",
+  slogan: "Dal primo caffè all'ultimo brindisi, sulla passerella che entra nel mare.",
   citta: "Pescara",
   indirizzo: "Lungomare, Pescara – indirizzo di esempio",
   telefono: "+39 085 000 0000",          // come appare sul sito
   telefonoLink: "+390850000000",          // senza spazi, per il link "Chiama"
   whatsapp: "393330000000",               // prefisso internazionale, senza + e spazi
-  whatsappMessaggio: "Ciao Salmastro! Vorrei informazioni per un evento.",
-  email: "ciao@salmastro.example",
+  whatsappMessaggio: "Ciao! Vorrei informazioni per un evento al Pontile.",
+  email: "ciao@ilpontile.example",
   // Mappa: coordinate del punto da mostrare (lungomare di Pescara)
   mappa: { lat: 42.4687, lng: 14.2205, zoom: 15 },
   fusoOrario: "Europe/Rome",
@@ -48,7 +48,7 @@ window.SITE_CONFIG = {
     instagram: "https://www.instagram.com/",
     facebook: "https://www.facebook.com/",
     tiktok: "https://www.tiktok.com/",
-    instagramNome: "@salmastro.pescara"
+    instagramNome: "@ilpontile.pescara"
   },
 
   /* 5) IL NOSTRO GIORNO (fasce orarie mostrate nella sezione) ------------- */
@@ -104,7 +104,7 @@ window.SITE_CONFIG = {
         { nome: "Panino porchetta, scamorza e friarielli", prezzo: 7.5 },
         { nome: "Focaccia crudo, burrata e pomodorini", prezzo: 8.5 },
         { nome: "Piadina tonno, pomodoro e cipolla rossa", prezzo: 7 },
-        { nome: "Insalatona Salmastro", prezzo: 9, nota: "tonno, ceci, olive, finocchio, arancia" },
+        { nome: "Insalatona del Pontile", prezzo: 9, nota: "tonno, ceci, olive, finocchio, arancia" },
         { nome: "Poke di salmone o pollo", prezzo: 11 },
         { nome: "Pasta fredda del giorno", prezzo: 9 }
       ]

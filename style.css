@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SALMASTRO – Bar & Eventi
+   IL PONTILE – Bar & Eventi
    Palette: blu petrolio, sabbia, bianco caldo, corallo.
    Tipografia: Anybody (titoli, larghezza variabile) + Instrument Sans (testo).
    ========================================================================== */
@@ -334,6 +334,7 @@ body.no-scroll { overflow: hidden; }
   margin-left: -.04em;
 }
 .hero__name .ch { display: inline-block; }
+.hero__name .ch--sp { width: .3em; }
 .js .hero__name .ch { animation: rise 1.1s var(--ease) both; animation-delay: calc(.15s + var(--i) * 55ms); }
 @keyframes rise { from { transform: translateY(.45em); opacity: 0; } to { transform: none; opacity: 1; } }
 .hero__sub {
